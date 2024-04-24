@@ -1,26 +1,19 @@
-const form = document.querySelector('.form');
-const emailInput = document.querySelector('.email-input');
+const form = document.querySelector('form');
+const inputs = form.querySelectorAll('input');
+const submitButton = form.querySelector('.submit-button');
 
-const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log(emailInput.validity.valid);
+const handleInput = () => {
+    form.classList.toggle('invalid', !inputs[0].validity.valid);
 }
 
-form.addEventListener('submit', handleSubmit);
+const handleSubmitClick = () => {
+    if (!inputs[0].validity.valid) {
+        form.classList.add('invalid');
+        inputs[0].addEventListener('input', handleInput);
 
+    } else {
+        form.classList.remove('invalid');
+    }
+}
 
-// const toggleErrorMessage = () => {
-//     let isValid = emailInput.validity.valid;
-//     form.classList.toggle('not-valid', !isValid);
-// }
-
-// form.addEventListener('input', toggleErrorMessage);
-
-
-
-// form is submitted
-// check if all inputs are valid
-// if one input is not valid set the invalid styling
-// return the invalid input key
-// display message depending on invalid key.
+submitButton.addEventListener('click', handleSubmitClick);
