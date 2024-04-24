@@ -57,7 +57,7 @@
       </div>
 
       <div class="form-container">
-        <form action="#" class="form" novalidate>
+        <form action="#" class="form">
           <label for="email" hidden>Enter your email</label>
           <input
             type="email"
@@ -67,13 +67,17 @@
             required
           />
 
-          <!-- <img src="../images/icon-error.svg" alt="Error icon" /> -->
+          <img
+            src="../images/icon-error.svg"
+            alt="Error icon"
+            class="invalid-icon"
+          />
 
           <button type="submit" class="submit-button">
             <img src="../images/icon-arrow.svg" alt="Submit button" />
           </button>
 
-          <span id="error-message"></span>
+          <span class="invalid-message"></span>
         </form>
       </div>
     </main>
