@@ -2,18 +2,16 @@ const form = document.querySelector('form');
 const inputs = form.querySelectorAll('input');
 const submitButton = form.querySelector('.submit-button');
 
-const handleInput = () => {
-    form.classList.toggle('invalid', !inputs[0].validity.valid);
-}
+const toggleInvalid = (event) => {
+    const input = event.target;
+    input.parentElement.classList.toggle('invalid', !input.checkValidity());
+};
 
 const handleSubmitClick = () => {
-    if (!inputs[0].validity.valid) {
-        form.classList.add('invalid');
-        inputs[0].addEventListener('input', handleInput);
-
-    } else {
-        form.classList.remove('invalid');
-    }
-}
+    inputs.forEach((input) => {
+        input.addEventListener('invalid', toggleInvalid);
+        input.addEventListener('input', toggleInvalid);
+    });
+};
 
 submitButton.addEventListener('click', handleSubmitClick);
