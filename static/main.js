@@ -8,16 +8,14 @@ const toggleInvalid = (event) => {
 
     const input = event.target;
     const validityState = input.validity;
-    const isValid = input.validity.valid;
 
-    if (validityState.valueMissing) {
+    if (validityState.valid.valueMissing) {
         invalidMessage.innerHTML = 'Email address is required'
-    } else if (validityState.typeMismatch) {
+    } else if (validityState.valid.typeMismatch) {
         invalidMessage.innerHTML = 'Please provide a valid email'
     }
 
-
-    input.parentElement.classList.toggle('invalid', !isValid);
+    input.parentElement.classList.toggle('invalid', !validityState.valid);
 };
 
 const handleSubmitClick = () => {
